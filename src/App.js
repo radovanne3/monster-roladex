@@ -1,18 +1,19 @@
 import { Component } from "react";
 import './App.css';
 import API_URL from "./constants";
+import {CardList} from "./components/card-list/card-list.component";
 
 
 export default class App extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      monsters: []
     }
   }
   componentDidMount() {
     API_URL.get(`/users`)
-        .then(res => this.setState({users : res.data}))
+        .then(res => this.setState({monsters : res.data}))
         .catch(function (error) {
               if (error.response) {
       // Request made and server responded
@@ -34,13 +35,7 @@ export default class App extends Component{
 
   render(){
     return (
-        <div>
-          {this.state.users.map(user =>
-              <div key={user.id}>
-                <p>name: {user.name}</p>
-                <p>email: {user.email}</p>
-                <hr/>
-              </div>)}
-        </div>)
+            <CardList monsters ={this.state.monsters}></CardList>
+        )
   }
 }
