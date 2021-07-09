@@ -1,7 +1,6 @@
 import { Component } from "react";
 import './App.css';
-import axios from "axios";
-
+import API_URL from "./constants";
 
 
 export default class App extends Component{
@@ -12,7 +11,7 @@ export default class App extends Component{
     }
   }
   componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`)
+    API_URL.get(`/users`)
         .then(res => this.setState({users : res.data}))
   }
 
